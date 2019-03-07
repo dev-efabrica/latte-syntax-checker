@@ -1,0 +1,20 @@
+{
+    "name": "efabrica/latte-syntax-checker",
+    "description": "Compiles latte files and checks syntax of generated php files",
+    "type": "library",
+    "keywords": ["latte", "compile", "syntax", "ci", "test"],
+    "license": "MIT",
+    "require": {
+        "php": ">= 7.1.0",
+        "latte/latte": "^2.5",
+        "nette/application": "^2.4",
+        "nette/di": "2.4.6",
+        "overtrue/phplint": "^1.1",
+        "symfony/console": "^4.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "LatteSyntaxChecker\\": "src"
+        }
+    }
+}
