@@ -99,9 +99,9 @@ class CheckCommand extends Command
             $contentRowsCount = count($contentRows);
             $newContentRows = [];
 
-            $cipherCount = strlen($contentRowsCount);
+            $cipherCount = strlen((string)$contentRowsCount);
             for ($i = max(1,$error['line'] - 5); $i <= min($contentRowsCount, $error['line'] + 5); ++$i) {
-                $newContentRows[] = str_pad($i, $cipherCount, ' ', STR_PAD_LEFT) . ': ' . ($error['line'] === $i ? '<error>' . $contentRows[$i - 1] . '</error>' : $contentRows[$i - 1]);
+                $newContentRows[] = str_pad((string)$i, $cipherCount, ' ', STR_PAD_LEFT) . ': ' . ($error['line'] === $i ? '<error>' . $contentRows[$i - 1] . '</error>' : $contentRows[$i - 1]);
             }
 
             $newContent = implode("\n", $newContentRows);

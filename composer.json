@@ -7,9 +7,9 @@
     "require": {
         "php": ">= 7.1.0",
         "latte/latte": "^2.5",
-        "nette/application": "^2.4",
-        "nette/di": "^2.4",
-        "nette/utils": "^2.4",
+        "nette/application": "^2.4 | ^3.0",
+        "nette/di": "^2.4 | ^3.0",
+        "nette/utils": "^2.4 | ^3.0",
         "overtrue/phplint": "^1.1",
         "symfony/console": "^4.2"
     },
