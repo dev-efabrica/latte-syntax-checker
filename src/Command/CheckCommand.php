@@ -5,6 +5,7 @@ namespace LatteSyntaxChecker\Command;
 use Latte\CompileException;
 use Latte\Engine;
 use Nette\Application\UI\ITemplateFactory;
+use Nette\Configurator;
 use Nette\DI\Container;
 use Nette\Utils\Finder;
 use Overtrue\PHPLint\Linter;
@@ -24,7 +25,7 @@ class CheckCommand extends Command
         $this->setName('check')
             ->setDescription('Command compiles all *.latte files and then checks syntax of all generated *.php files')
             ->addArgument('dirs', InputArgument::REQUIRED | InputArgument::IS_ARRAY, 'List of directories to check')
-            ->addOption('bootstrap', 'b', InputOption::VALUE_REQUIRED, 'Bootstrap file which returns container')
+            ->addOption('bootstrap', 'b', InputOption::VALUE_REQUIRED, 'Bootstrap file which returns container. Default container is simple base container created from Nette\Configurator')
             ->addOption('compiled-dir', 'c', InputOption::VALUE_REQUIRED, 'Directory for compiled files', 'tmp/compiled')
         ;
     }
@@ -113,15 +114,22 @@ class CheckCommand extends Command
 
     private function getLatteEngine(InputInterface $input): Engine
     {
+        $container = $this->getContainer($input);
+        /** @var ITemplateFactory $templateFactory */
+        $templateFactory = $container->getByType(ITemplateFactory::class);
+        return $templateFactory->createTemplate()->getLatte();
+    }
+
+    private function getContainer(InputInterface $input): Container
+    {
         $bootstrap = $input->getOption('bootstrap');
         if ($bootstrap) {
             /** @var Container $container */
             $container = require $bootstrap;
-
-            /** @var ITemplateFactory $templateFactory */
-            $templateFactory = $container->getByType(ITemplateFactory::class);
-            return $templateFactory->createTemplate()->getLatte();
+            return $container;
         }
-        return new Engine();
+        $configurator = new Configurator();
+        $configurator->setTempDirectory(__DIR__ . '/../../tmp');
+        return $configurator->createContainer();
     }
 }
