@@ -8,7 +8,7 @@
         "php": ">= 7.1.0",
         "latte/latte": "^2.4",
         "nette/application": "^2.4 | ^3.0",
-        "nette/bootstrap": "^3.0",
+        "nette/bootstrap": "^2.4 | ^3.0",
         "nette/di": "^2.4 | ^3.0",
         "nette/utils": "^2.4 | ^3.0",
         "overtrue/phplint": "^1.1",
