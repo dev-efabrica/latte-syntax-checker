@@ -10,6 +10,8 @@
         "nette/application": "^2.4 | ^3.0",
         "nette/bootstrap": "^2.4 | ^3.0",
         "nette/di": "^2.4 | ^3.0",
+        "nette/forms": "^2.4 | ^3.0",
+        "nette/robot-loader": "^2.4 | ^3.0",
         "nette/utils": "^2.4 | ^3.0",
         "overtrue/phplint": "^1.1",
         "symfony/console": "^4.2 | ^5.0"
